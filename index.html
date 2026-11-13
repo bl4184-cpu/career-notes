@@ -446,7 +446,7 @@ a.btn{text-decoration:none;color:var(--ink);display:inline-flex;align-items:cent
         <li>아래 칸에 붙여넣고 저장해요. 키는 지금 쓰는 브라우저에만 저장돼요.</li>
       </ol>
       <label class="f">Gemini API 키<input id="st_key" type="password" autocomplete="off" placeholder="AIza…로 시작하는 키"></label>
-      <label class="f">모델 (보통은 그대로 두세요)<input id="st_model" type="text" placeholder="gemini-2.5-flash"></label>
+      <label class="f">모델 (보통은 그대로 두세요)<input id="st_model" type="text" placeholder="gemini-3.6-flash"></label>
       <div class="bar"><button class="btn primary" id="btnSaveKey" type="button">저장</button><button class="btn" id="btnTestKey" type="button">연결 확인</button><span class="note" id="keyNote"></span></div>
     </div>
     <div class="step">
@@ -549,7 +549,7 @@ a.btn{text-decoration:none;color:var(--ink);display:inline-flex;align-items:cent
   /* Gemini로 '분석' 호출 */
   const toB64 = (blob) => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(",")[1]); r.onerror = () => rej(r.error); r.readAsDataURL(blob); });
   async function call(input, opts = {}, asJson) {
-    const st = settings(); const key = st.apiKey, model = st.model || "gemini-2.5-flash";
+    const st = settings(); const key = st.apiKey, model = st.model || "gemini-3.6-flash";
     if (!key) throw { code: "no_key", message: "Gemini API 키가 없어요" };
     const contents = typeof input === "string" ? [{ role: "user", parts: [{ text: input }] }]
       : input.map(m => ({ role: m.role === "assistant" ? "model" : "user", parts: [{ text: m.content }] }));
